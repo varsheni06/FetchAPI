@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Products list</title>
+</head>
+<body>
+    <h1>Products</h1>
+    <table>
+        
+        <tbody id="tablerows">
+        </tbody>
+    </table>
+    <script>
+        fetch("https://dummyjson.com/products")
+        
+        //fetch("http://172.16.2.62:8082/api/L")
+            .then(response => response.json())
+            .then(res => {
+                const data = res.products;
+                let rows = '';
+                data.forEach(product => {
+                    rows += `<tr><td>${product.id}</td><td>${product.name}</td></tr>`;
+                });
+                document.getElementById('tablerows').innerHTML = rows;
+            })
+            .catch(error => console.log(error));
+    </script>
+</body>
+</html>
